@@ -54,4 +54,32 @@ Project Organization
 
 --------
 
+# Configuração do Ambiente Python 3.7.1
+
+## Passos para Instalar Dependências
+
+```bash
+sudo apt-get update
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+```
+
+## Instalação do Python 3.7.1
+
+```bash
+pyenv install 3.7.1
+```
+
+## Criação do Ambiente Virtual
+
+```bash
+pyenv virtualenv 3.7.1 myenv-3.7.1
+pyenv activate myenv-3.7.1
+```
+
+## Verificação da Versão do Python
+
+```bash
+python --version
+```
+
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
