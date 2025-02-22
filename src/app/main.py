@@ -6,7 +6,8 @@ import pickle
 import os
 
 colunas = ['tamanho','ano','garagem']
-modelo = pickle.load(open('../../models/modelo.sav','rb'))
+with open(os.path.join(os.path.dirname(__file__), '../../models/modelo.sav'), 'rb') as model_file:
+    modelo = pickle.load(model_file)
 
 app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = os.environ.get('BASIC_AUTH_USERNAME')
