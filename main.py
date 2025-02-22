@@ -1,12 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_basicauth import BasicAuth
-# from textblob import TextBlob
-# from sklearn.linear_model import LinearRegression
 import pickle
 import os
 
-colunas = ['tamanho','ano','garagem']
-with open(os.path.join(os.path.dirname(__file__), '../../models/modelo.sav'), 'rb') as model_file:
+colunas = ['tamanho', 'ano', 'garagem']
+with open(os.path.join(os.path.dirname(__file__),'models/modelo.sav'), 'rb') as model_file:
     modelo = pickle.load(model_file)
 
 app = Flask(__name__)
@@ -15,17 +13,10 @@ app.config['BASIC_AUTH_PASSWORD'] = os.environ.get('BASIC_AUTH_PASSWORD')
 
 basic_auth = BasicAuth(app)
 
+
 @app.route('/')
 def home():
     return "Minha primeira API."
-
-# @app.route('/sentimento/<frase>')
-# @basic_auth.required
-# def sentimento(frase):
-#     tb = TextBlob(frase)
-#     tb_en = tb.translate(to='en')
-#     polaridade = tb_en.sentiment.polarity
-#     return "polaridade: {}".format(polaridade)
 
 @app.route('/cotacao/', methods=['POST'])
 @basic_auth.required
@@ -35,4 +26,6 @@ def cotacao():
     preco = modelo.predict([dados_input])
     return jsonify(preco=preco[0])
 
-app.run(debug=True, host='0.0.0.0')
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
